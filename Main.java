@@ -1,149 +1,112 @@
-/*Loops :
+package corejavaconcepts;
 
-Iterations :
+public class Main {
 
-Process of Repeating a task
-
-
-Loops :
-constructs which can be used to execute a task/statement/bunch of statements as many times as required.
-
-
-for
-while
-do-while
-
-3 parameters :
-
-1)initialization point : communicates the starting point for the loop.
-2)termination point : communicates the ending point for the loop.
-3)increment/decrement point : communicates the step value.
-
-
-categories :
-entry control loop :
-1) for :
-2) while :
-
-exit control loop : 
-1) do-while : 
-
-
-syntax : 
-for(initialization;termination;increment/decrement)
-{
-
-}
-
-e.g. :
-
-1 to 10
-
-for(int i=1;i<1;i++)
-{
-	System.out.println(i);
-}
-
-execution process : 
-1) initialization
-2) conditional check
-3) statement
-4) increment
-
-
-
-while syntax :
-while(condition)
-{
-	statement;
-	
-	increment/decrement;
-}
-
-
-int i=1;
-
-while(i<=10)
-{
-	System.out.println(i);
-	i++;	
-}
-
-
-
-do-while
-
-syntax :
-
-initialization;
-
-do
-{
-	statement;
-	in/de;
-}while(condition);
-
-
-
-*/
-class Main
-{
-	public static void main(String args[])
-	{
-		System.out.println("Using for loop");
-		for(int i=1;i<=10;++i)
-		{	
-			System.out.println(i);
-		}
-		System.out.println("Using while loop");
-		int j=1;
-		while(j<=10)
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		for(int i=1;i<=5;i++)
+//		{
+//			for(int j=1;j<=5;j++)
+//			{
+//				if(i==1 || j==1)
+//				{
+//					System.out.print("1");
+//				}
+//				else if(j==i)
+//				{
+//					System.out.print(j+" ");	
+//				}
+//				else
+//				{
+//					System.out.print(" ");
+//				}	
+//			}
+//			System.out.println();
+//		}
+/*
+ * 1 2 3 4 5
+   2 1     5
+   3   1   5
+   4     1 5
+   5 5 5 5 5 
+ */
+//		for(int i=1;i<=5;i++)
+//		{
+//			for(int j=1;j<=5;j++)
+//			{
+//				if(i==1)
+//				{
+//					System.out.print(j+" ");
+//				}
+//				else if(j==1)
+//				{
+//					System.out.print(i+" ");
+//				}
+//				else if(j==5 || i==5)
+//				{
+//					System.out.print("5 ");
+//				}
+//				else if(i==j)
+//				{
+//					System.out.print("1 ");
+//				}
+//				else
+//				{
+//					System.out.print("  ");
+//				}	
+//			}
+//			System.out.println();
+//		}
+//		
+		
+		/*  
+		 *     1
+		 *   1 2 1
+		 * 1 2 3 2 1
+		 * 
+		 * 
+		 * 1 loop : rows
+		 * 1 loop : space
+		 * 1 loop : first half
+		 * 1 loop : second half
+		 *     1
+		 *   2 1 2
+		 * 3 2 1 2 3
+		 * 
+		 * 
+		 */
+		
+		for(int i=1;i<=3;i++)
 		{
-			System.out.println(j);
-			++j;			
+			for(int s=2;s>=i;s--)
+			{
+				System.out.print(" ");
+			}
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(j);
+			}
+			for(int k=i-1;k>=1;k--)
+			{
+				System.out.print(k);
+			}
+			/*
+			 * 
+			 * i=1
+			 * k=i-1=>k=0
+			 * k>=1
+			 * 
+			 * i=2
+			 * k=i-1=>k=2-1=>1
+			 * k>=1
+			 * 
+			 * i=3
+			 * k=i-1=>3-1=>2
+			 * 2 1
+			 * 
+			 */
+			System.out.println();
 		}
-		System.out.println("Using do-while loop");
-		int i=1;
-		do
-		{
-			System.out.println(i);
-			++i;
-		}while(i<=10);		
 	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
