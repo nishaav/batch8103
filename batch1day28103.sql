@@ -61,18 +61,13 @@ alter table emp add ( empEmail varchar(20));
 alter table emp add empQualification varchar(30) after empName;
 select * from emp;
 desc emp;
-
 alter table emp drop column empQualification;
 ALTER TABLE emp MODIFY empName varchar(100); 
 -- alter table emp modify (empName varchar(80),empContact varchar(20));
-
 select * from employee;
-
 -- rename table 
 ALTER TABLE emp RENAME TO employee;
 RENAME TABLE employee to emp;
-
 -- rename a column
 alter table emp rename column empEmail to email; 
-
 select * from emp;
