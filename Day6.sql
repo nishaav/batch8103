@@ -87,14 +87,16 @@ insert into learner values(1,'Dinesh',NOW());
 -- FORMAT 
 select learner_name,DATE_FORMAT(NOW(),'%a %Y %M %e') as Date from learners;
 select date(NOW());
+-- 
 -- creating a procedure
 CREATE PROCEDURE PROC_LEARNER()
 select learner_name,DATE_FORMAT(NOW(),'%a %Y %M %e') as Date from learners
 GO;
+-- source code->compiled code->
 -- execute procedure
 CALL PROC_LEARNER;
 -- dropping procedure
- DROP procedure if exists PROC_LEARNER;
+DROP procedure if exists PROC_LEARNER;
  -- parameterised procedure
 CREATE PROCEDURE PROC_LEARNER_FILTER(IN id int)
 select learner_name,DATE_FORMAT(NOW(),'%a %Y %M %e') as Date from learners where learner_id=id;
@@ -103,8 +105,10 @@ CALL PROC_LEARNER_FILTER(3);
  
  -- see procedure code
  show procedure code PROC_LEARNER_FILTER;
+-- IN and OUT mode parameterised procedure
 CREATE PROCEDURE PROC_LEARNER_FILTER_OUT(IN id int,OUT total int)
 select count(learner_name) into total from learners where learner_id=id;
+select * from learners;
 -- session variable @total
 CALL PROC_LEARNER_FILTER_OUT(3,@total);
 select @total;
@@ -114,3 +118,68 @@ use information_schema;
 show databases;
 select * from routines;
 desc PROC_LEARNER_FILTER_OUT;
+
+use hibernatedemo;
+
+
+show tables;
+select * from learners;
+select * from course_registration_fullstack_java;
+
+-- UNION : merge the response of two or more select statements removing duplicacy
+SELECT learner_id
+FROM learners
+UNION
+SELECT course_reg_id
+FROM course_registration_fullstack_java;
+
+-- UNION ALL : merge the response of two or more select statements without removing duplicacy
+SELECT learner_id
+FROM learners
+UNION ALL
+SELECT course_reg_id
+FROM course_registration_fullstack_java;
+
+select * from statistics;
+
+use batch18103;
+desc emp;
+show tables;
+
+CREATE INDEX emp_idx ON emp(empName);-- unique
+CREATE INDEX emp_idx1 ON emp(empName,empAge);-- composite
+-- implicit created automatically on the basis of primary key column
+-- indexes on the basis of foreign key is created implicitly
+
+
+-- Triggers
+create table emp_update_info
+(
+    emp_name varchar(50) not null,
+    emp_no int not null,
+    changedate datetime default NOW(),
+    action varchar(50) not null
+);
+
+-- after|before
+
+CREATE TRIGGER before_emp_details_update
+	BEFORE UPDATE ON emp_details
+	FOR EACH ROW
+    INSERT INTO emp_update_info
+    SET action='update',
+	emp_no=OLD.emp_no,
+    emp_name=OLD.emp_name,
+    changedate=NOW();
+
+desc emp_details;
+show tables;
+select * from emp_update_info;
+insert into emp_details(emp_name,emp_no,changedate,action) values
+('Suraj',32,NOW(),'insert'),
+('Sanjay',38,NOW(),'insert'),
+('Seema',45,NOW(),'insert')
+;
+
+select * from emp_details;
+update emp_details set emp_no=90 where emp_id=2;
